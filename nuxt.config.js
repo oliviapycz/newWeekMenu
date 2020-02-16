@@ -79,6 +79,6 @@ export default {
     BASE_URL: process.env.BASE_URL,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     GOOGLE_AUTH_URL: process.env.GOOGLE_AUTH_URL,
-    SITE_URL=process.env.SITE_URL
+    SITE_URL: process.env.SITE_URL
   },
 }
