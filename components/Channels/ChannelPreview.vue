@@ -41,9 +41,14 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      showUrl: false
+    }
+  },
   methods: {
     async generateUrl (channelId) {
-      const url = 'localhost:3000/invitation?channelId=' + channelId
+      const url = process.env.SITE_URL + '/invitation?channelId=' + channelId
       const text = 'you have been invited'
       console.log('navigator', navigator)
       try {
@@ -66,7 +71,8 @@ export default {
       //   // Here we use the WhatsApp API as fallback; remember to encode your text for URI
       //   location.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text + ' - ') + location.href
       // }
-      // console.log('********URL********', url)
+      console.log('********URL********', url)
+      this.showUrl = true
     }
   }
 }
