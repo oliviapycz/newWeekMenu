@@ -226,7 +226,6 @@ const createStore = () => {
         }
       },
       async authenticateUser (vuexContext, authData) {
-        console.log('process.env', process.env)
         const authUrl = process.env.GOOGLE_AUTH_URL + (authData.page === 'register' ? 'signUp?key=' : 'signInWithPassword?key=') + process.env.GOOGLE_API_KEY
         try {
           await this.$axios.$post(authUrl, {
