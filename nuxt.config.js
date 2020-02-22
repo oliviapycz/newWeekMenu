@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 export default {
   mode: 'universal',
   /*
@@ -14,6 +14,17 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+  generate: {
+    routes () {
+      return axios.get(process.env.SITE_URL + '/channels.json')
+        .then((data) => {
+          console.log('in config', data)
+          return data.map((channel) => {
+            return '/dashboard/' + channel
+          })
+        })
+    }
   },
   /*
   ** Customize the progress-bar color
@@ -53,10 +64,10 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
- axios: {
-  baseURL: process.env.API_ENDPOINT,
-  credentials: false
-},
+  axios: {
+    baseURL: process.env.API_ENDPOINT,
+    credentials: false
+  },
   /*
   ** Build configuration
   */
@@ -80,5 +91,5 @@ export default {
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     GOOGLE_AUTH_URL: process.env.GOOGLE_AUTH_URL,
     SITE_URL: process.env.SITE_URL
-  },
+  }
 }
