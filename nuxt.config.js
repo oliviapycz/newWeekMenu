@@ -19,12 +19,11 @@ export default {
   generate: {
     routes () {
       return axios.get(process.env.SITE_URL + '/channels.json')
-        .then((data) => {
+        .then((res) => {
           const routes = []
-          console.log('in config', data)
-          data.forEach((channel) => {
-            routes.push('/dashboard/' + channel)
-          })
+          for (const key in res.data) {
+            routes.push('/dashboard/' + key)
+          }
           return routes
         })
     }
