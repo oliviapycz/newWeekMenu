@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export default {
   mode: 'universal',
   /*
@@ -15,17 +16,19 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  // generate: {
-  //   routes () {
-  //     return axios.get(process.env.SITE_URL + '/channels.json')
-  //       .then((data) => {
-  //         console.log('in config', data)
-  //         return data.forEach((channel) => {
-  //           return '/dashboard/' + channel
-  //         })
-  //       })
-  //   }
-  // },
+  generate: {
+    routes () {
+      return axios.get(process.env.SITE_URL + '/channels.json')
+        .then((data) => {
+          const routes = []
+          console.log('in config', data)
+          data.forEach((channel) => {
+            routes.push('/dashboard/' + channel)
+          })
+          return routes
+        })
+    }
+  },
   /*
   ** Customize the progress-bar color
   */
