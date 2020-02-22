@@ -20,7 +20,7 @@ export default {
       return axios.get(process.env.SITE_URL + '/channels.json')
         .then((data) => {
           console.log('in config', data)
-          return data.map((channel) => {
+          return data.forEach((channel) => {
             return '/dashboard/' + channel
           })
         })
