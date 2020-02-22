@@ -15,17 +15,17 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  generate: {
-    routes () {
-      return axios.get(process.env.SITE_URL + '/channels.json')
-        .then((data) => {
-          console.log('in config', data)
-          return data.forEach((channel) => {
-            return '/dashboard/' + channel
-          })
-        })
-    }
-  },
+  // generate: {
+  //   routes () {
+  //     return axios.get(process.env.SITE_URL + '/channels.json')
+  //       .then((data) => {
+  //         console.log('in config', data)
+  //         return data.forEach((channel) => {
+  //           return '/dashboard/' + channel
+  //         })
+  //       })
+  //   }
+  // },
   /*
   ** Customize the progress-bar color
   */
@@ -58,8 +58,10 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/toast',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@bazzite/nuxt-netlify'
   ],
+  netlify: {},
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
