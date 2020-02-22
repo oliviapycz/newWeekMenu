@@ -18,7 +18,7 @@ export default {
   },
   generate: {
     routes () {
-      return axios.get(process.env.SITE_URL + '/channels.json')
+      return axios.get(process.env.BASE_URL + '/channels.json')
         .then((res) => {
           const routes = []
           for (const key in res.data) {
