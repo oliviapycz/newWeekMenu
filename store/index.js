@@ -57,14 +57,10 @@ const createStore = () => {
                 .$get(process.env.BASE_URL + '/channels.json')
                 .then((data) => {
                   const channels = []
-                  console.log('++++++++++++++++++', data)
                   fetchedChannelIds.forEach((element) => {
-                    console.log('******************', element)
-                    // console.log('channel nuxtServerInit', data[element])
                     channels.push({ ...data[element], id: element })
                   })
                   vuexContext.commit('setChannels', channels)
-                  // console.log('channel nuxtServerInit', channels)
                 })
             })
         }
@@ -138,7 +134,7 @@ const createStore = () => {
         User.getUser(userId)
           .then((res) => {
             const data = res.data
-            newChannelIds = data.channelIdsuserload
+            newChannelIds = data.channelIds
             newChannelIds.push(param.channelId)
             User.updateUser(userId, {
               authId: data.authId,
@@ -150,13 +146,14 @@ const createStore = () => {
               .then((res) => {
                 const user = res.data
                 Channel.getChannel(param.channelId)
-                  .then((data) => {
+                  .then((res) => {
+                    const channel = res.data
                     const userEmail = user.email
-                    const newUsersChannel = data.usersId
+                    const newUsersChannel = channel.usersId
                     newUsersChannel.push(userEmail)
                     Channel.updateChannel(param.channelId, {
-                      menuId: data.menuId,
-                      title: data.title,
+                      menuId: channel.menuId,
+                      title: channel.title,
                       usersId: newUsersChannel
                     })
                   })
@@ -237,7 +234,6 @@ const createStore = () => {
             returnSecureToken: true
           })
             .then((result) => {
-              console.log('result', result)
               if (authData.page === 'register') {
                 let fetchedChannelIds = []
                 Menu.createMenu({ ...emptyMenu })
@@ -320,8 +316,6 @@ const createStore = () => {
                         }
                       }
                     }
-                    console.log('****user ID****', userCookieId)
-                    console.log('****user***', user)
                     vuexContext.commit('setUser', { ...user })
                     localStorage.setItem('userId', userCookieId)
                     Cookie.set('userId', userCookieId)
@@ -353,7 +347,6 @@ const createStore = () => {
         try {
           await Menu.updateMenu(param.menuId, param.updatedMenu)
             .then((res) => {
-              console.log('return res in store updateMenu', res)
               vuexContext.commit('updateMenus', res.data)
             })
         } catch (e) {
