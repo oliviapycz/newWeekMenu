@@ -73,18 +73,20 @@
             </nuxt-link>
           </li>
         </ul>
-        <div v-if="displayUser">
-          <button class="button is-dark is-fullwidth" @click="logout">
-            Logout
-          </button>
-        </div>
-        <div v-else @click="$emit('close')">
-          <nuxt-link to="/register" class="button is-dark is-fullwidth">
-            Register
-          </nuxt-link>
-          <nuxt-link to="/login" class="button is-dark is-fullwidth">
-            Login
-          </nuxt-link>
+        <div class="button-container">
+          <div v-if="displayUser">
+            <button class="button is-dark" @click="logout">
+              Logout
+            </button>
+          </div>
+          <div v-else @click="$emit('close')">
+            <nuxt-link to="/register" class="button is-dark">
+              Register
+            </nuxt-link>
+            <nuxt-link to="/login" class="button is-dark">
+              Login
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </transition>
@@ -128,6 +130,13 @@ export default {
 </script>
 
 <style scoped>
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+.button-container button, .button-container a {
+  min-width: 100px;;
+}
 .channel {
   border: 1px solid lightgray;
   background-color: white;
