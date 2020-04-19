@@ -16,18 +16,6 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  generate: {
-    routes () {
-      return axios.get(process.env.BASE_URL + '/channels.json')
-        .then((res) => {
-          const routes = []
-          for (const key in res.data) {
-            routes.push('/dashboard/' + key)
-          }
-          return routes
-        })
-    }
-  },
   /*
   ** Customize the progress-bar color
   */
@@ -95,5 +83,17 @@ export default {
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     GOOGLE_AUTH_URL: process.env.GOOGLE_AUTH_URL,
     SITE_URL: process.env.SITE_URL
+  },
+  generate: {
+    routes () {
+      return axios.get('https://opycz-weekmenu.firebaseio.com/channels.json')
+        .then((res) => {
+          const routes = []
+          for (const key in res.data) {
+            routes.push('/dashboard/' + key)
+          }
+          return routes
+        })
+    }
   }
 }

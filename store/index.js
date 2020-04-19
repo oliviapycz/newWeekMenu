@@ -57,7 +57,9 @@ const createStore = () => {
                 .$get(process.env.BASE_URL + '/channels.json')
                 .then((data) => {
                   const channels = []
+                  console.log('++++++++++++++++++', data)
                   fetchedChannelIds.forEach((element) => {
+                    console.log('******************', element)
                     // console.log('channel nuxtServerInit', data[element])
                     channels.push({ ...data[element], id: element })
                   })
@@ -96,7 +98,7 @@ const createStore = () => {
               console.log('result in initauth', data)
               vuexContext.commit('setUser', { ...data })
             })
-        } else {
+        } else if (process.client) {
           token = localStorage.getItem('token')
           expirationDate = localStorage.getItem('tokenExpiration')
           userId = localStorage.getItem('userId')
