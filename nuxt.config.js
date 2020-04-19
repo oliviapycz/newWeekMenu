@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export default {
   mode: 'universal',
   /*
@@ -48,10 +46,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/toast',
-    '@nuxtjs/pwa',
-    '@bazzite/nuxt-netlify'
+    '@nuxtjs/pwa'
   ],
-  netlify: {},
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -81,19 +77,6 @@ export default {
   env: {
     BASE_URL: process.env.BASE_URL,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
-    GOOGLE_AUTH_URL: process.env.GOOGLE_AUTH_URL,
-    SITE_URL: process.env.SITE_URL
-  },
-  generate: {
-    routes () {
-      return axios.get('https://opycz-weekmenu.firebaseio.com/channels.json')
-        .then((res) => {
-          const routes = []
-          for (const key in res.data) {
-            routes.push('/dashboard/' + key)
-          }
-          return routes
-        })
-    }
+    GOOGLE_AUTH_URL: process.env.GOOGLE_AUTH_URL
   }
 }

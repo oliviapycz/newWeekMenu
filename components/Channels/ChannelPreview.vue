@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     async generateUrl (channelId) {
-      const url = process.env.SITE_URL + '/invitation?channelId=' + channelId
+      const url = '/invitation?channelId=' + channelId
       const text = 'you have been invited'
       console.log('navigator', navigator)
       try {
