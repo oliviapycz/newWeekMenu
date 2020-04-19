@@ -45,10 +45,16 @@ const createStore = () => {
     actions: {
       nuxtServerInit (vuexContext, context) {
         if (context.req && context.req.headers && context.req.headers.cookie) {
+          console.log(context.req)
           let fetchedChannelIds = []
           const parsedCookies = Cookieparser.parse(context.req.headers.cookie)
           return context.app.$axios.$get(process.env.BASE_URL + '/users/' + parsedCookies.userId + '.json')
             .then((data) => {
+              if (!data) {
+                Cookie.remove('jwt')
+                Cookie.remove('userId')
+                Cookie.remove('expirationDate')
+              }
               fetchedChannelIds = data.channelIds
               vuexContext.commit('setUser', { ...data })
             })
