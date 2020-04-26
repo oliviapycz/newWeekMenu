@@ -30,7 +30,6 @@ export default {
   justify-content: center;
 }
 .absolute-bottom-right {
-  z-index: 1000;
   position: absolute;
   bottom: 5px;
   right: 5px;

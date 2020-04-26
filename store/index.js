@@ -106,7 +106,6 @@ const createStore = () => {
           userId = localStorage.getItem('userId')
         }
         if (new Date().getTime() > +expirationDate || !token) {
-          console.log('no token or invalid token')
           vuexContext.dispatch('logout')
           return
         }
@@ -216,7 +215,6 @@ const createStore = () => {
                             .then((res) => {
                               const data = res.data
                               const channels = []
-                              console.log('this.getters.user.channelIds', this.getters.user.channelIds)
                               this.getters.user.channelIds.forEach((element) => {
                                 channels.push({ ...data[element], id: element })
                               })
@@ -345,7 +343,6 @@ const createStore = () => {
               Cookie.set('expirationDate', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
             })
         } catch (e) {
-          console.log('e', e)
           this.error = e.response.data.message
         }
       },
