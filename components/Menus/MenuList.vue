@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     updateMenu (index) {
-      console.log('[*****MenuList in method updateMenu index*****]', index)
       this.$emit('update-menu', index)
     }
   }

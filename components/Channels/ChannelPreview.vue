@@ -50,7 +50,6 @@ export default {
     async generateUrl (channelId) {
       const url = '/invitation?channelId=' + channelId
       const text = 'you have been invited'
-      console.log('navigator', navigator)
       try {
         await navigator.share({
           title: 'weekmenu',
@@ -61,16 +60,6 @@ export default {
       } catch (err) {
         console.error('Share failed:', err.message)
       }
-      // if ('share' in navigator) {
-      //   navigator.share({
-      //     title: 'weekmenu',
-      //     text,
-      //     url
-      //   })
-      // } else {
-      //   // Here we use the WhatsApp API as fallback; remember to encode your text for URI
-      //   location.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text + ' - ') + location.href
-      // }
       console.log('********URL********', url)
       this.showUrl = true
     }

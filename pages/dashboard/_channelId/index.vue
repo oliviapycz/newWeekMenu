@@ -60,6 +60,7 @@ export default {
   },
   computed: {
     channelId () {
+      // TODO don't return all query if special character in it
       return this.$route.query.channel
     },
     loadedMenus () {
