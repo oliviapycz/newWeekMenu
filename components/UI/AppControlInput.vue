@@ -8,8 +8,8 @@
     >
     <textarea
       v-if="controlType === 'textarea'"
-      rows="10"
       :value="value"
+      rows="10"
       @input="$emit('input', $event.target.value)"
     />
   </div>
