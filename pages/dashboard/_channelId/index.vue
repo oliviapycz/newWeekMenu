@@ -83,7 +83,8 @@ export default {
       this.loadedMenus[IndexToUpdate] = dailyMenuToUpdate
       this.$store.dispatch('updateMenu', {
         menuId: this.$route.query.menu,
-        updatedMenu: this.loadedMenus
+        updatedMenu: this.loadedMenus,
+        channelId: this.$route.query.id
       })
     }
   }

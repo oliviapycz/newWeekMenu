@@ -14,6 +14,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  workbox: {
+    importScripts: ['sw.js']
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -27,7 +30,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~plugins/core-components.js'
+    '~plugins/core-components.js',
+    '~plugins/notifications.js'
   ],
   /*
   ** Nuxt.js dev-modules

@@ -45,7 +45,7 @@ const createStore = () => {
     actions: {
       nuxtServerInit (vuexContext, context) {
         if (context.req && context.req.headers && context.req.headers.cookie) {
-          console.log(context.req)
+          // console.log(context.req)
           let fetchedChannelIds = []
           const parsedCookies = Cookieparser.parse(context.req.headers.cookie)
           return context.app.$axios.$get(process.env.BASE_URL + '/users/' + parsedCookies.userId + '.json')
@@ -112,7 +112,6 @@ const createStore = () => {
         }
         vuexContext.commit('setToken', token)
       },
-
       logout (vuexContext) {
         vuexContext.commit('clearSession')
         Cookie.remove('jwt')
@@ -351,7 +350,7 @@ const createStore = () => {
       },
       async updateMenu (vuexContext, param) {
         try {
-          await Menu.updateMenu(param.menuId, param.updatedMenu)
+          await Menu.updateMenu(param.menuId, param.updatedMenu, param.channelId)
             .then((res) => {
               vuexContext.commit('updateMenus', res.data)
             })

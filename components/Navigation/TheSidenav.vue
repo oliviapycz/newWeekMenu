@@ -26,6 +26,9 @@
                 {{ displayUser.email }}
               </p>
             </div>
+            <button @click="enableNotifications">
+              Enable Notifications
+            </button>
           </div>
         </div>
         <ul
@@ -124,6 +127,9 @@ export default {
         .then(() => {
           this.$router.push('/')
         })
+    },
+    enableNotifications () {
+      this.requestPermissionForNotification()
     }
   }
 }
